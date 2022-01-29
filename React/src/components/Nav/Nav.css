@@ -1,0 +1,14 @@
+.active{
+    font-weight: bold;
+}
+.navbar{
+    background-color: #79c9c9;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+}
+.fotito{
+    width:50px;
+    height: 50px;
+    border-radius: 50%;
+}
