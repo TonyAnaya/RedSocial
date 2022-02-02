@@ -1,0 +1,16 @@
+.card_user{
+    width: 100%;
+}
+.fot{
+    max-width: 150px;
+    max-height: 150px;
+    margin: 0 auto;
+    border-radius: 50%;
+    padding: 5%;
+}
+.card-text{
+    font-size: 60%;
+}
+.forma{
+    margin-top: 5%;
+}

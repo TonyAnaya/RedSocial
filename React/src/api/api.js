@@ -40,6 +40,7 @@ const apiLogin = async (userData) =>{
     .then(res=>res.json())
     .catch(err => console.log(err))
 }
+
 const apiPubli = async () =>{
     return await fetch('http://localhost:3001/publi',{
         method: 'GET',

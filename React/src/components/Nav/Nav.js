@@ -54,7 +54,7 @@ function Nav() {
               <NavLink className="nav-link" to="/publi">Feed</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/perfil">Perfil</NavLink>
+              <NavLink className="nav-link" to="/amigos">Personas</NavLink>
             </li>
           </ul>
           <ul className="navbar-nav" >

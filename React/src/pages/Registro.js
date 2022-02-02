@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import {apiLogin} from '../api/api';
 import { useLocalStorage } from "../hooks/useLocalStorage";
-function Login() {
+function Regis() {
 
     const navigate = useNavigate()
     const [loading,setLoading] = useState(false)
@@ -33,12 +33,12 @@ function Login() {
             if(loginResult.token){
                 setError({...error,
                     error:false})
-                    saveToken({token: loginResult.token})
-                    let data = loginResult.token.split(".")
-                    let userData = window.atob(data[1])
-                    saveUser(userData)
-                    console.log(window.localStorage.USER)
-                    navigate("/publi")
+                saveToken({token: loginResult.token})
+                let data = loginResult.token.split(".")
+                let userData = window.atob(data[1])
+                saveUser(userData)
+                console.log(window.localStorage.USER)
+                navigate("/publi")
                     
             }
         }
@@ -50,7 +50,7 @@ function Login() {
              <div className="col-lg-6 offset-lg-4">
                 <div className="card">
                     <div className="card-body">
-                        <h5 className="card-title">Bienvenide</h5>
+                        <h5 className="card-title">Favor de introducir datos de Registro</h5>
                         { error.error && (
                             <div className="alert alert-danger text-center" role="alert">
                             <strong>{error.errorMessage}</strong>
@@ -65,13 +65,24 @@ function Login() {
                                 <input type="password" className="form-control" id="floatingPassword" placeholder="Password" required/>
                                 <label htmlFor="floatingPassword">Password</label>
                             </div>
+                            <div className="form-floating mb-3">
+                                <input type="password" className="form-control" id="floatingPassword_Confirm" placeholder="Password" required/>
+                                <label htmlFor="floatingPassword">Confirm Password</label>
+                            </div>
+                            <div className="form-floating">
+                                <input type="text" className="form-control" id="floatingInput_Name" placeholder="Nombre de usuario" required/>
+                                <label htmlFor="floatingPassword">Nombre</label>
+                            </div>
+                            <div className="form-floating mb-3">
+                                <input type="text" className="form-control" id="floatingInput_Last_Name" placeholder="Nombre de usuario" required/>
+                                <label htmlFor="floatingPassword">Apellido</label>
+                            </div>
+
                             <br/>
                             { !loading && (
-
                             <div className="d-grid gap-2">
-                                <button className="btn btn-primary" type="submit">Entrar</button>
-                                
-                                <NavLink   NavLink className="nav-link" to="/registro">Ir a Registrar</NavLink>
+                                <button className="btn btn-primary" type="submit">Registrar</button>
+                                <NavLink   NavLink className="nav-link" to="/login">Ir a Iniciar Sesion</NavLink>
                             </div>
                             )}
                         </form>
@@ -91,4 +102,4 @@ function Login() {
      );
 }
 
-export {Login};
+export {Regis};

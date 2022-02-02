@@ -1,11 +1,11 @@
-import './Perfil.css';
+import './Amigos.css';
 import { useState ,useEffect } from 'react';
 import { apiPubli, savePubli, searchUser } from '../../api/api';
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 
 
-function Perfil() {
+function Amigos() {
 
     const [search,setSearch] = useState([])
     const [publi,setPubli] = useState([])
@@ -20,6 +20,7 @@ function Perfil() {
         let resul = await searchUser("%%")
         let array = resul.result
         let newState =array
+        console.log(array)
         
         setSearch(newState)
         console.log(search)
@@ -27,7 +28,6 @@ function Perfil() {
 
     const onSubmit = async (event)=>{
         event.preventDefault()
-        console.log("se esta buscando a " + event.target[0].value)
         if(!event.target[0].value){
             event.target[0].value= "%%";
         }
@@ -35,11 +35,9 @@ function Perfil() {
         let resul = await searchUser(event.target[0].value)
         let array = resul.result
         let newState =array
-        console.log(array)
         
         setSearch(newState)
         event.target[0].value= "";
-        console.log(search)
         
     }
 
@@ -75,4 +73,4 @@ function Perfil() {
      );
 }
 
-export {Perfil} ;
+export {Amigos} ;
