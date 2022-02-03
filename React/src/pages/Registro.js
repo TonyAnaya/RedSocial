@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import {apiLogin} from '../api/api';
+import {apiLogin, searchUser, apiRegister } from '../api/api';
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
 
@@ -16,47 +16,71 @@ function Regis() {
 
     const register = async (event) =>{
         event.preventDefault()
-        console.log(event.target[0].value)
-        console.log(event.target[1].value)
-        console.log(event.target[2].value)
-        console.log(event.target[3].value)
-        console.log(event.target[4].value)
-        console.log(event.target[5].value)
+        let img = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuqRPBOeet4nYclhDLrDZwF2w2kBObHgLVdg&usqp=CAU"
+        let resul = await searchUser(event.target[0].value)
+        let array = resul.result
 
-        if(event.target[1].value === event.target[2].value){
-
-            let newLogin = {
-                email: event.target[0].value,
-                pass: event.target[1].value,
-            }
-
-            setLoading(true)
-
-            let loginResult = await apiLogin(newLogin)
-            if (loginResult) {
-                setLoading(false)
-
-                if(loginResult.error){
-                    setError({
-                        errorMessage:loginResult.error,
-                        error:true})
+        if(!array[0]){
+            console.log("El usuario no existe, eso es bueno porque estamos registrando")
+            if(event.target[1].value === event.target[2].value){
+                if(!event.target[6].value){
+                    console.log("La foto sera default")
+                }else {
+                    let img = event.target[6].value
                 }
 
-                if(loginResult.token){
-                    setError({...error,
-                        error:false})
-                    saveToken({token: loginResult.token})
-                    let data = loginResult.token.split(".")
-                    let userData = window.atob(data[1])
-                    saveUser(userData)
-                    console.log(window.localStorage.USER)
-                    navigate("/publi")
-                        
+                let newRegister = {
+                    email: event.target[0].value,
+                    pass: event.target[1].value,
+                    name: event.target[3].value,
+                    last_name: event.target[4].value,
+                    brd_date: event.target[5].value,
+                    foto: img
                 }
+
+                setLoading(true)
+
+
+                apiRegister(newRegister)
+                
+                console.log(newRegister)
+                let newLogin = {
+                    email: event.target[0].value,
+                    pass: event.target[1].value
+                }
+
+                let loginResult = await apiLogin(newLogin)
+                console.log(loginResult)
+                //saveUser(newRegister)
+                if (loginResult) {
+                    setLoading(false)
+                    if(loginResult.error){
+                        setError({
+                            errorMessage:loginResult.error,
+                            error:true})
+                    }
+                    if(loginResult.token){
+                        setError({...error,
+                            error:false})
+                        saveToken({token: loginResult.token})
+                        let data = loginResult.token.split(".")
+                        let userData = window.atob(data[1])
+                        saveUser(userData)
+                        console.log(window.localStorage.USER)
+                        console.log("AAAAAA")
+                        navigate("/publi")
+                            
+                    }
+                }
+            }else {
+                console.log("No se pudo confirmar la contraseña")
             }
+        }else{
+            console.log("El correo introducido ya esta registrado con un usuario")
         }
+        
     }
-
+    
     return ( 
         <div className="container">
           <div className="row">
@@ -95,6 +119,11 @@ function Regis() {
                             <div className="form-floating mb-3">
                                 <input type="text" className="form-control" id="floatingInput_Last_Name" placeholder="Apellido de usuario" required/>
                                 <label htmlFor="floatingPassword">Apellido</label>
+                            </div>
+                            <br/>
+                            <div className="form-floating mb-3">
+                                <input type="date" className="form-control" id="floatingInput_brd_date" placeholder="Nacimiento" required/>
+                                <label htmlFor="floatingPassword">Fecha de nacimiento</label>
                             </div>
                             <br/>
                             <h6>Introduce url de tu foto</h6>

@@ -77,4 +77,18 @@ const searchUser = async (searchUse)=>{
 
 }
 
-export {getPokemon,savePokemon,listPokemon,apiLogin,apiPubli, savePubli ,searchUser};
+const apiRegister = async (regis)=>{
+    return await fetch('http://localhost:3001/registro',{
+        method: 'POST',
+        body:  JSON.stringify({regis}),
+        headers:{
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(res=>res.json())
+    .catch(err => console.log(err)) 
+
+}
+
+
+export {getPokemon,savePokemon,listPokemon,apiLogin,apiPubli, savePubli ,searchUser, apiRegister};

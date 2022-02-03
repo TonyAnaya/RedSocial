@@ -9,6 +9,7 @@ const pokemon = require("./view/pokemon")
 const user = require("./view/user")
 const publi = require("./view/publi")
 const search = require("./view/search")
+const registro  = require("./view/registro")
 
 //Midlewares
 app.use(express.json())
@@ -28,4 +29,5 @@ pokemon(app);
 user(app);
 publi(app);
 search(app);
+registro(app);
 
