@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {global} from './global/global';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 import {Home} from './pages/Home';
 import {Pokemon} from './pages/Pokemon';
 import {NotFound} from './pages/404';

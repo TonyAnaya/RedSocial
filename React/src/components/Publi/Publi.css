@@ -5,7 +5,7 @@
 .Publi-text{
     font-style: italic;
     text-decoration: underline;
-    height: 20px;
+    font-size:100%;
 }
 .imagenes{
     width:100px;

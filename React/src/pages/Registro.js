@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import {apiLogin} from '../api/api';
 import { useLocalStorage } from "../hooks/useLocalStorage";
+
+
 function Regis() {
 
     const navigate = useNavigate()
@@ -12,34 +14,45 @@ function Regis() {
     const [token, saveToken]= useLocalStorage("TOKEN",{})
 
 
-    const login = async (event) =>{
+    const register = async (event) =>{
         event.preventDefault()
-        let newLogin = {
-            email: event.target[0].value,
-            pass: event.target[1].value
-        }
-        setLoading(true)
+        console.log(event.target[0].value)
+        console.log(event.target[1].value)
+        console.log(event.target[2].value)
+        console.log(event.target[3].value)
+        console.log(event.target[4].value)
+        console.log(event.target[5].value)
 
-        let loginResult = await apiLogin(newLogin)
-        if (loginResult) {
-            setLoading(false)
+        if(event.target[1].value === event.target[2].value){
 
-            if(loginResult.error){
-                setError({
-                    errorMessage:loginResult.error,
-                    error:true})
+            let newLogin = {
+                email: event.target[0].value,
+                pass: event.target[1].value,
             }
 
-            if(loginResult.token){
-                setError({...error,
-                    error:false})
-                saveToken({token: loginResult.token})
-                let data = loginResult.token.split(".")
-                let userData = window.atob(data[1])
-                saveUser(userData)
-                console.log(window.localStorage.USER)
-                navigate("/publi")
-                    
+            setLoading(true)
+
+            let loginResult = await apiLogin(newLogin)
+            if (loginResult) {
+                setLoading(false)
+
+                if(loginResult.error){
+                    setError({
+                        errorMessage:loginResult.error,
+                        error:true})
+                }
+
+                if(loginResult.token){
+                    setError({...error,
+                        error:false})
+                    saveToken({token: loginResult.token})
+                    let data = loginResult.token.split(".")
+                    let userData = window.atob(data[1])
+                    saveUser(userData)
+                    console.log(window.localStorage.USER)
+                    navigate("/publi")
+                        
+                }
             }
         }
     }
@@ -56,33 +69,45 @@ function Regis() {
                             <strong>{error.errorMessage}</strong>
                             </div>
                         )}
-                        <form onSubmit={login}>
+                        <form onSubmit={register}>
+                            <br/>
+                            <h6>Introduce tu e-mail</h6>
                             <div className="form-floating mb-3">
                                 <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" autoFocus required/>
                                 <label htmlFor="floatingInput">Email address</label>
                             </div>
+                            <br/>
+                            <h6>Introduce tu contraseña</h6>
                             <div className="form-floating">
                                 <input type="password" className="form-control" id="floatingPassword" placeholder="Password" required/>
                                 <label htmlFor="floatingPassword">Password</label>
                             </div>
                             <div className="form-floating mb-3">
-                                <input type="password" className="form-control" id="floatingPassword_Confirm" placeholder="Password" required/>
+                                <input type="password" className="form-control" id="floatingPassword_Confirm" placeholder="Confirm Password" required/>
                                 <label htmlFor="floatingPassword">Confirm Password</label>
                             </div>
+                            <br/>
+                            <h6>Introduce tus datos</h6>
                             <div className="form-floating">
                                 <input type="text" className="form-control" id="floatingInput_Name" placeholder="Nombre de usuario" required/>
                                 <label htmlFor="floatingPassword">Nombre</label>
                             </div>
                             <div className="form-floating mb-3">
-                                <input type="text" className="form-control" id="floatingInput_Last_Name" placeholder="Nombre de usuario" required/>
+                                <input type="text" className="form-control" id="floatingInput_Last_Name" placeholder="Apellido de usuario" required/>
                                 <label htmlFor="floatingPassword">Apellido</label>
+                            </div>
+                            <br/>
+                            <h6>Introduce url de tu foto</h6>
+                            <div className="form-floating">
+                                <input type="text" className="form-control" id="floatingInput_URL" placeholder="URL Foto" />
+                                <label htmlFor="floatingPassword">Url</label>
                             </div>
 
                             <br/>
                             { !loading && (
                             <div className="d-grid gap-2">
                                 <button className="btn btn-primary" type="submit">Registrar</button>
-                                <NavLink   NavLink className="nav-link" to="/login">Ir a Iniciar Sesion</NavLink>
+                                <NavLink className="nav-link" to="/login">Ir a Iniciar Sesion</NavLink>
                             </div>
                             )}
                         </form>

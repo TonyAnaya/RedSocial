@@ -76,7 +76,7 @@ function Publi() {
                     <div className="card-body">
                         <img className="imagenes" src={q.imag}></img>
                         <h5 className="card-title">{q.name}</h5>
-                        <p className="card-text Publi-text">{q.publi}</p>
+                        <p className="Publi-text">{q.publi}</p>
                     </div>
                 </div>
             </div>
