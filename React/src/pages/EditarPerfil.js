@@ -1,34 +1,35 @@
-
-import { Quotes } from "../components/Quotes/Quotes";
+import { EditarPerfil } from "../components/EditarPerfil/EditarPerfil";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from 'react';
 import { SideBarLeft } from "../components/SideBarLeft/SideBarLeft";
 import { SideBarRight } from "../components/SideBarRight/SideBarRight";
 
-function Home({ quotesDB }) {
-      const [token]= useLocalStorage("TOKEN",{})
-      const navigate = useNavigate()
+
+function EditarPerf () {
+    const [token]= useLocalStorage("TOKEN",{})
+    const navigate = useNavigate()
   
-      const getOut = (token) =>{
-          if (!token) {
-            navigate("/login")
-          }
-      }
+    const getOut = (token) =>{
+        if (!token) {
+          navigate("/login")
+        }
+    }
       
-      useEffect(()=>{
-          getOut(token.token)
-      },[])
-    return (
+    useEffect(()=>{
+        getOut(token.token)
+    },[])
+
+    return ( 
         <div className=' row col-lg-12' >
             <SideBarLeft/>
             <div className="container col-lg-8 ">
-              <Quotes quotesDB = {quotesDB} />
+              <EditarPerfil />
             </div>
             <SideBarRight/>
         </div>
 
-      );
+     );
 }
 
-export {Home};
+export {EditarPerf };

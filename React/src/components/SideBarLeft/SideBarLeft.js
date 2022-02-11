@@ -13,7 +13,9 @@ function SideBarLeft() {
                         <NavLink className="nav-link" to="/perfil">Perfil</NavLink>
                     </li>
                     <li className="list-group-item"><a href="">Grupos</a></li>
-                    <li className="list-group-item"><a href="">Amigos</a></li>
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to="/amigos">Personas</NavLink>
+                    </li>
                     <li className="list-group-item"><a href="">Mensajes</a></li>
                 </ul>
             </div>

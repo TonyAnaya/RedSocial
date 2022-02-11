@@ -87,8 +87,20 @@ const apiRegister = async (regis)=>{
     })
     .then(res=>res.json())
     .catch(err => console.log(err)) 
-
 }
 
 
-export {getPokemon,savePokemon,listPokemon,apiLogin,apiPubli, savePubli ,searchUser, apiRegister};
+const apiUpdate = async (updat)=>{
+    return await fetch('http://localhost:3001/update',{
+        method: 'POST',
+        body:  JSON.stringify({updat}),
+        headers:{
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(res=>res.json())
+    .catch(err => console.log(err)) 
+}
+
+
+export {getPokemon,savePokemon,listPokemon,apiLogin,apiPubli, savePubli ,searchUser, apiRegister, apiUpdate};

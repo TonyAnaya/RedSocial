@@ -17,6 +17,8 @@ function Regis() {
     const register = async (event) =>{
         event.preventDefault()
         let img = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuqRPBOeet4nYclhDLrDZwF2w2kBObHgLVdg&usqp=CAU"
+        let fond = "https://i.blogs.es/0ca5da/ambulo_polar_wide/450_1000.jpg"
+        
         let resul = await searchUser(event.target[0].value)
         let array = resul.result
 
@@ -28,6 +30,11 @@ function Regis() {
                 }else {
                     let img = event.target[6].value
                 }
+                if(!event.target[7].value){
+                    console.log("El fondo sera default")
+                }else {
+                    let fond = event.target[7].value
+                }
 
                 let newRegister = {
                     email: event.target[0].value,
@@ -35,7 +42,13 @@ function Regis() {
                     name: event.target[3].value,
                     last_name: event.target[4].value,
                     brd_date: event.target[5].value,
-                    foto: img
+                    foto: img,
+                    fondo: fond,
+                    pais: event.target[8].value,
+                    ciudad: event.target[9].value,
+                    link: event.target[10].value,
+                    git: event.target[11].value,
+                    descri: event.target[12].value
                 }
 
                 setLoading(true)
@@ -126,10 +139,40 @@ function Regis() {
                                 <label htmlFor="floatingPassword">Fecha de nacimiento</label>
                             </div>
                             <br/>
-                            <h6>Introduce url de tu foto</h6>
+                            <h6>Introduce url de tus imagenes</h6>
                             <div className="form-floating">
                                 <input type="text" className="form-control" id="floatingInput_URL" placeholder="URL Foto" />
-                                <label htmlFor="floatingPassword">Url</label>
+                                <label htmlFor="floatingPassword">Foto de Perfil</label>
+                            </div>
+                            <div className="form-floating">
+                                <input type="text" className="form-control" id="floatingInput_URLFondo" placeholder="URL Foto" />
+                                <label htmlFor="floatingPassword">Foto fondo</label>
+                            </div>
+                            <br/>
+                            <h6>De donde eres?</h6>
+                            <div className="form-floating">
+                                <input type="text" className="form-control" id="Pais" placeholder="Pais" />
+                                <label htmlFor="floatingPassword">Pais</label>
+                            </div>
+                            <div className="form-floating">
+                                <input type="text" className="form-control" id="Ciudad" placeholder="Ciudad" />
+                                <label htmlFor="floatingPassword">Ciudad</label>
+                            </div>
+                            <br/>
+                            <h6>Links</h6>
+                            <div className="form-floating">
+                                <input type="text" className="form-control" id="LinkedIn" placeholder="LinkedIn" />
+                                <label htmlFor="floatingPassword">LinkedIn</label>
+                            </div>
+                            <div className="form-floating">
+                                <input type="text" className="form-control" id="GitHub" placeholder="GitHub" />
+                                <label htmlFor="floatingPassword">GitHub</label>
+                            </div>
+                            <br/>
+                            <h6>Descripcion</h6>
+                            <div className="form-floating">
+                                <textarea className="form-control" id="Descripcion" placeholder="Descripcion" rows="5"/>
+                                <label htmlFor="floatingPassword">Descripcion</label>
                             </div>
 
                             <br/>

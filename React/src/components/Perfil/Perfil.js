@@ -2,75 +2,93 @@ import './Perfil.css';
 import { useState ,useEffect } from 'react';
 import { apiPubli, savePubli, searchUser } from '../../api/api';
 import { useLocalStorage } from "../../hooks/useLocalStorage";
+import { NavLink } from "react-router-dom";
+
 
 
 
 function Perfil() {
 
+    let descripcion = "Edita tu perfil para añadir una descripcion :)"
     const [search,setSearch] = useState([])
     const [publi,setPubli] = useState([])
-    const [token]= useLocalStorage("TOKEN",{})
-
-    const printPub = async (token) => {
-        const publiBak = await apiPubli(token)
-        setPubli(publiBak[0])
-   }
-    useEffect(async ()=>{
-        printPub(token.token)
-        let resul = await searchUser("%%")
-        let array = resul.result
-        let newState =array
-        
-        setSearch(newState)
-        console.log(search)
-    },[])
-
-    const onSubmit = async (event)=>{
-        event.preventDefault()
-        console.log("se esta buscando a " + event.target[0].value)
-        if(!event.target[0].value){
-            event.target[0].value= "%%";
-        }
-
-        let resul = await searchUser(event.target[0].value)
-        let array = resul.result
-        let newState =array
-        console.log(array)
-        
-        setSearch(newState)
-        event.target[0].value= "";
-        console.log(search)
-        
+    const [token, saveToken]= useLocalStorage("TOKEN",{})
+    const [user, saveUser]= useLocalStorage("USER",{})
+    
+    let data = JSON.parse(window.localStorage.USER)
+    //window.location.pathname = window.location.pathname + "/" + data.name
+    if(data.descri){
+        descripcion = data.descri;
     }
-
+    let fondito = data.fondo
+    let linkedin = data.link
+    let github = data.git
     return ( 
-        <div className="container-fluid row col-lg-12 text-align-center">
-            <div className="input-group col-lg-8 forma">
-                <form onSubmit={onSubmit} className="offset-3">
-                    <h4>Vamos a stalkear a otros usuarios :)</h4>
-                    <div className="d-flex">
-                        <input type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder='Search'/>
-                        <button type="submit" className="btn btn-primary">Buscar</button>
-                    </div>
-                </form>
+        <div>
+            <div className="container-fluid row col-lg-12 text-align-center fond" style={{backgroundImage: `url(${fondito})`}}>
+                <div className="card perf"  >
+                    <img className="card-img-top fotPerf" src={data.foto} alt="Card image cap"/>
+                </div>
+                <div className="card-title nombre">
+                    {data.name} {data.last_name}
+                </div>
             </div>
-
-            
-            {
-                search.slice(0).reverse().map(q =>(
-                <div key={q.id} className="col-lg-3">
-                    <div className="card card_user">
-                        <img className="card-img-top img-fluid fot" src={q.foto}></img>
-                        <div className="card-body">
-                            <h5 className="card-title">{q.name} {q.last_name}</h5>
-                            <h5 className="card-text ">{q.email}</h5>
-                            <br/>
-                            <a href="#" className="btn btn-primary">Visitar</a>
-                        </div>
+            <br/>
+            <div className="container-fluid row prueba" >
+                <div className="card descript col-lg-7" >
+                    <div className="card-title descriptext">
+                        {descripcion} 
                     </div>
                 </div>
-                ))
-            }
+                <div className="card datitos col-lg-4 offset-1" >
+                    <div className=" conten row">
+                        <div className="col-lg-6 contenti">
+                            Nacimiento: 
+                        </div>
+                        <div className="col-lg-6 contenti">
+                            {data.brd_date}
+                        </div>
+                    </div>
+                    <div className=" conten row">
+                        <div className="col-lg-6 contenti">
+                            Pais: 
+                        </div>
+                        <div className="col-lg-6 contenti">
+                            {data.pais}
+                        </div>
+                        
+                    </div>
+                    <div className=" conten row">
+                        <div className="col-lg-6 contenti">
+                            Ciudad:  
+                        </div>
+                        <div className="col-lg-6 contenti">
+                            {data.ciudad}
+                        </div>
+                        
+                    </div>
+                    <div className=" conten row">
+                        <div className="col-lg-6 contenti">
+                            LinkedIn: 
+                        </div>
+                        <div className="col-lg-6 contenti">
+                            <a href={linkedin}>LinkedIn</a>
+                            
+                        </div>
+                         
+                    </div>
+                    <div className=" conten row">
+                        <div className="col-lg-6 contenti">
+                             Git Hub: 
+                        </div>
+                        <div className="col-lg-6 contenti">
+                            <a href={github}>GitHub</a>
+                        </div>
+                    </div>
+                    
+                </div>
+                    <NavLink className="nav-link" to="/editar-perfil">Editar Perfil</NavLink>
+            </div>
         </div>
      );
 }

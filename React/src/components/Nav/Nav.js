@@ -10,7 +10,7 @@ function Nav() {
   const [user, saveUser]= useLocalStorage("USER",{})
   const navigate = useNavigate()
   let dataExist = false
-  console.log()
+  let dataFotoExist = false
 
   let data = JSON.parse(window.localStorage.USER)
   if(data.name){
@@ -21,13 +21,24 @@ function Nav() {
   }else{
     dataExist = false
   }
+  if(data.foto){
+    dataFotoExist = true
+
+  }else{
+    dataFotoExist = false
+  }
+
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light">
       <div className="container-fluid">
-        { dataExist && (
+        { dataFotoExist && (
             <img src={data.foto} className='fotito'></img>
         )}
+        { !dataFotoExist && (
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuqRPBOeet4nYclhDLrDZwF2w2kBObHgLVdg&usqp=CAU" className='fotito'></img>
+        )}
+
         <NavLink className="nav-link" to="/publi">
         
         { dataExist && (

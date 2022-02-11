@@ -10,6 +10,7 @@ const user = require("./view/user")
 const publi = require("./view/publi")
 const search = require("./view/search")
 const registro  = require("./view/registro")
+const update  = require("./view/update")
 
 //Midlewares
 app.use(express.json())
@@ -30,4 +31,5 @@ user(app);
 publi(app);
 search(app);
 registro(app);
+update(app);
 
