@@ -11,6 +11,7 @@ import {Perf} from './pages/Perfil';
 import {EditarPerf} from './pages/EditarPerfil';
 import {Amig} from './pages/Amigos';
 import {Regis} from './pages/Registro';
+import {OtroPerf} from './pages/OtroPerfil';
 import {Nav} from './components/Nav/Nav';
 
 
@@ -25,6 +26,7 @@ ReactDOM.render(
       <Routes>
         <Route path="/login" element={<Login />} /> 
         <Route path="/perfil" element={<Perf />} />
+        <Route path="/otro-perfil" element={<OtroPerf />} />
         <Route path="/editar-perfil" element={<EditarPerf />} />
         <Route path="/amigos" element={<Amig />} />
         <Route path="/registro" element={<Regis />} />   

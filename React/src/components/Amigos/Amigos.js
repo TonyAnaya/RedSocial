@@ -2,14 +2,17 @@ import './Amigos.css';
 import { useState ,useEffect } from 'react';
 import { apiPubli, savePubli, searchUser } from '../../api/api';
 import { useLocalStorage } from "../../hooks/useLocalStorage";
+import { NavLink } from "react-router-dom";
 
 
 
 function Amigos() {
-
+    
     const [search,setSearch] = useState([])
     const [publi,setPubli] = useState([])
     const [token]= useLocalStorage("TOKEN",{})
+    const [friend, saveFriend]= useLocalStorage("FRIEND",{})
+    
 
     const printPub = async (token) => {
         const publiBak = await apiPubli(token)
@@ -20,10 +23,9 @@ function Amigos() {
         let resul = await searchUser("%%")
         let array = resul.result
         let newState =array
-        console.log(array)
         
+        saveFriend({})
         setSearch(newState)
-        console.log(search)
     },[])
 
     const onSubmit = async (event)=>{
@@ -39,6 +41,16 @@ function Amigos() {
         setSearch(newState)
         event.target[0].value= "";
         
+    }
+
+
+    const searchFriend = async (event)=>{
+        let otromail = event.target.innerHTML
+        let usuario = await searchUser(otromail)
+        saveFriend(usuario.result[0])
+        setTimeout(() => {
+            window.location.reload(false);
+        }, 100);
     }
 
     return ( 
@@ -63,7 +75,11 @@ function Amigos() {
                             <h5 className="card-title">{q.name} {q.last_name}</h5>
                             <h5 className="card-text ">{q.email}</h5>
                             <br/>
-                            <a href="#" className="btn btn-primary">Visitar</a>
+                            <button className="btn btn-primary" onClick={searchFriend}>
+                                <NavLink className="btn btn-primary" to="/otro-perfil">
+                                    {q.email}
+                                </NavLink>
+                            </button>
                         </div>
                     </div>
                 </div>
