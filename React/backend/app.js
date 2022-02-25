@@ -17,12 +17,12 @@ app.use(express.json())
 app.use(cors())
 
 
-app.use('/', express.static('public/react'))
-app.use('/static', express.static('public'))
+//app.use('/', express.static('public/react'))
+//app.use('/static', express.static('public'))
 
 
 async function serverStart() {
-    //await sql.authenticate();
+    await sql.authenticate();
     app.listen(3001,()=>{
         console.log("Server start on http:localhost:3001")
     })

@@ -1,6 +1,6 @@
 import './Amigos.css';
 import { useState ,useEffect } from 'react';
-import { apiPubli, savePubli, searchUser } from '../../api/api';
+import { apiPubli, searchUser } from '../../api/api';
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { NavLink } from "react-router-dom";
 
@@ -9,9 +9,9 @@ import { NavLink } from "react-router-dom";
 function Amigos() {
     
     const [search,setSearch] = useState([])
-    const [publi,setPubli] = useState([])
+    const [setPubli] = useState([])
     const [token]= useLocalStorage("TOKEN",{})
-    const [friend, saveFriend]= useLocalStorage("FRIEND",{})
+    const [saveFriend]= useLocalStorage("FRIEND",{})
     
 
     const printPub = async (token) => {

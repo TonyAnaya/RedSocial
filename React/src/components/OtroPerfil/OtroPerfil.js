@@ -1,8 +1,6 @@
 import './OtroPerfil.css';
 import { useState ,useEffect } from 'react';
-import { apiPubli, savePubli, searchUser } from '../../api/api';
 import { useLocalStorage } from "../../hooks/useLocalStorage";
-import { NavLink } from "react-router-dom";
 
 
 
@@ -10,8 +8,8 @@ import { NavLink } from "react-router-dom";
 function OtroPerfil() {
 
     let descripcion = "Edita tu perfil para añadir una descripcion :)"
-    const [search,setSearch] = useState([])
-    const [publi,setPubli] = useState([])
+    const [search, setSearch] = useState([])
+    const [publi, setPubli] = useState([])
     const [token, saveToken]= useLocalStorage("TOKEN",{})
     const [user, saveUser]= useLocalStorage("USER",{})
     const [friend, saveFriend]= useLocalStorage("FRIEND",{})

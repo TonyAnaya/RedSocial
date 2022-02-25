@@ -1,26 +1,25 @@
 import './EditarPerfil.css';
-import { useState ,useEffect } from 'react';
+import { useState } from 'react';
 import { apiLogin, searchUser, apiUpdate} from '../../api/api';
 import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { NavLink } from "react-router-dom";
 
 
-let descripcion = "Edita tu perfil para añadir una descripcion :)"
+var descripcion = "Edita tu perfil para añadir una descripcion :)"
 
 
 function EditarPerfil() {
 
-    const [search,setSearch] = useState([])
     const navigate = useNavigate()
     const [loading,setLoading] = useState(false)
     const [error,setError] = useState({error:false,errorMessage:"Error"})
-    const [token, saveToken]= useLocalStorage("TOKEN",{})
-    const [user, saveUser]= useLocalStorage("USER",{})
+    const [saveToken]= useLocalStorage("TOKEN",{})
+    const [saveUser]= useLocalStorage("USER",{})
     
     let data = JSON.parse(window.localStorage.USER)
     if(data.descri){
-        let descripcion = data.descri;
+        descripcion = data.descri;
     }
     let fondito = data.fondo
 
