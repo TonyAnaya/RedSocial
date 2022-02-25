@@ -6,13 +6,13 @@ import { useLocalStorage } from "../hooks/useLocalStorage";
 
 
 function Regis() {
+    
 
     const navigate = useNavigate()
     const [loading,setLoading] = useState(false)
     const [error,setError] = useState({error:false,errorMessage:"Error"})
     const [user, saveUser]= useLocalStorage("USER",{})  
     const [token, saveToken]= useLocalStorage("TOKEN",{})
-
 
     const register = async (event) =>{
         event.preventDefault()
@@ -80,7 +80,6 @@ function Regis() {
                         let userData = window.atob(data[1])
                         saveUser(userData)
                         console.log(window.localStorage.USER)
-                        console.log("AAAAAA")
                         navigate("/publi")
                             
                     }

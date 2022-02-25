@@ -6,8 +6,8 @@ import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 
 function Nav() {
-  const [saveToken]= useLocalStorage("TOKEN",{})
-  const [saveUser]= useLocalStorage("USER",{})
+  const [token, saveToken]= useLocalStorage("TOKEN",{})
+  const [user, saveUser]= useLocalStorage("USER",{})
   const navigate = useNavigate()
   let dataExist = false
   let dataFotoExist = false

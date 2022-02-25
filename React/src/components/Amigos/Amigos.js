@@ -1,6 +1,6 @@
 import './Amigos.css';
 import { useState ,useEffect } from 'react';
-import { apiPubli, searchUser } from '../../api/api';
+import { apiPubli, savePubli, searchUser } from '../../api/api';
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { NavLink } from "react-router-dom";
 
@@ -9,9 +9,9 @@ import { NavLink } from "react-router-dom";
 function Amigos() {
     
     const [search,setSearch] = useState([])
-    const [setPubli] = useState([])
+    const [publi,setPubli] = useState([])
     const [token]= useLocalStorage("TOKEN",{})
-    const [saveFriend]= useLocalStorage("FRIEND",{})
+    const [friend, saveFriend]= useLocalStorage("FRIEND",{})
     
 
     const printPub = async (token) => {
@@ -68,22 +68,22 @@ function Amigos() {
             
             {
                 search.slice(0).reverse().map(q =>(
-                <div key={q.id} className="col-lg-3">
-                    <div className="card card_user">
-                        <img className="card-img-top img-fluid fot" src={q.foto}></img>
-                        <div className="card-body">
-                            <h5 className="card-title">{q.name} {q.last_name}</h5>
-                            <h5 className="card-text ">{q.email}</h5>
-                            <br/>
-                            <button className="btn btn-primary" onClick={searchFriend}>
-                                <NavLink className="btn btn-primary" to="/otro-perfil">
-                                    {q.email}
-                                </NavLink>
-                            </button>
+                    <div key={q.id} className="col-lg-3">
+                        <div className="card card_user">
+                            <img className="card-img-top img-fluid fot" src={q.foto}></img>
+                            <div className="card-body">
+                                <h5 className="card-title nombrito ">{q.name} {q.last_name}</h5>
+                                <h5 className="card-text ">{q.email}</h5>
+                                <br/>
+                                <button className="btn btn-primary botoncito" onClick={searchFriend}>
+                                    <NavLink className="btn btn-primary correito" to="/otro-perfil">
+                                        {q.email}
+                                    </NavLink>
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                ))
+                    ))
             }
         </div>
      );

@@ -1,25 +1,26 @@
 import './EditarPerfil.css';
-import { useState } from 'react';
+import { useState ,useEffect } from 'react';
 import { apiLogin, searchUser, apiUpdate} from '../../api/api';
 import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { NavLink } from "react-router-dom";
 
 
-var descripcion = "Edita tu perfil para añadir una descripcion :)"
+let descripcion = "Edita tu perfil para añadir una descripcion :)"
 
 
 function EditarPerfil() {
 
+    const [search,setSearch] = useState([])
     const navigate = useNavigate()
     const [loading,setLoading] = useState(false)
     const [error,setError] = useState({error:false,errorMessage:"Error"})
-    const [saveToken]= useLocalStorage("TOKEN",{})
-    const [saveUser]= useLocalStorage("USER",{})
+    const [token, saveToken]= useLocalStorage("TOKEN",{})
+    const [user, saveUser]= useLocalStorage("USER",{})
     
     let data = JSON.parse(window.localStorage.USER)
     if(data.descri){
-        descripcion = data.descri;
+        let descripcion = data.descri;
     }
     let fondito = data.fondo
 
@@ -105,8 +106,6 @@ function EditarPerfil() {
             setLoading(true)
             apiUpdate(newUpdate)
 
-            console.log(event)
-            console.log(event.target[9].value)
             let newLogin = {
                 email: data.email,
                 pass: event.target[9].value
@@ -116,7 +115,6 @@ function EditarPerfil() {
             saveUser({})
             
             let loginResult = await apiLogin(newLogin)
-            console.log(loginResult)
             //saveUser(newRegister)
             if (loginResult) {
                 setLoading(false)
@@ -132,8 +130,6 @@ function EditarPerfil() {
                     let data = loginResult.token.split(".")
                     let userData = window.atob(data[1])
                     saveUser(userData)
-                    console.log(window.localStorage.USER)
-                    console.log("AAAAAA")
                     navigate("/perfil")
                         
                 }
