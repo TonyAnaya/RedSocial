@@ -12,6 +12,7 @@ function Pokemon() {
     const [token]= useLocalStorage("TOKEN",{})
     const navigate = useNavigate()
 
+  //Funcion que asegura que el usuario incio sesion
     const getOut = (token) =>{
         if (!token) {
           navigate("/login")
