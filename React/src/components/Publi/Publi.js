@@ -71,7 +71,7 @@ function Publi() {
         <div className="row">
         {
             publi.slice(0).reverse().map(q =>(
-            <div key={q.id} className="col-lg-12">
+            <div key={q.id + q.publi} className="col-lg-12">
                 <div className="card">
                     <div className="card-body">
                         <img className="imagenes" src={q.imag}></img>

@@ -14,8 +14,6 @@ import {Regis} from './pages/Registro';
 import {OtroPerf} from './pages/OtroPerfil';
 import {Nav} from './components/Nav/Nav';
 
-
-
 ReactDOM.render(
   <BrowserRouter>
     <Nav />
