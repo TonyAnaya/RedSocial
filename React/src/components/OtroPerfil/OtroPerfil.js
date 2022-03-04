@@ -32,8 +32,14 @@ function OtroPerfil() {
         cont = cont +1
     }
 
-    useEffect(async ()=>{
+
+    const asincrona = async () => {
         let data = JSON.parse(window.localStorage.FRIEND)
+   }
+
+
+    useEffect(async ()=>{
+        asincrona()
     },[])
     return ( 
         <div>

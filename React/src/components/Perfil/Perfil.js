@@ -1,5 +1,5 @@
 import './Perfil.css';
-import { useState ,useEffect } from 'react';
+import { useState  } from 'react';
 import { apiPubli, savePubli, searchUser } from '../../api/api';
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { NavLink } from "react-router-dom";

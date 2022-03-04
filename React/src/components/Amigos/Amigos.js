@@ -14,18 +14,17 @@ function Amigos() {
     const [friend, saveFriend]= useLocalStorage("FRIEND",{})
     
 
-    const printPub = async (token) => {
-        const publiBak = await apiPubli(token)
-        setPubli(publiBak[0])
-   }
-    useEffect(async ()=>{
-        printPub(token.token)
+    const asincrona = async () => {
         let resul = await searchUser("%%")
         let array = resul.result
         let newState =array
-        
         saveFriend({})
         setSearch(newState)
+   }
+
+
+    useEffect(()=>{
+        asincrona()
     },[])
 
     const onSubmit = async (event)=>{

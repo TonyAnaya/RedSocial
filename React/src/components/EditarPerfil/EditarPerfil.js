@@ -1,5 +1,5 @@
 import './EditarPerfil.css';
-import { useState ,useEffect } from 'react';
+import { useState } from 'react';
 import { apiLogin, searchUser, apiUpdate} from '../../api/api';
 import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
