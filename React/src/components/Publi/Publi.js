@@ -1,6 +1,6 @@
 import './Publi.css';
 import { useState ,useEffect } from 'react';
-import { apiPubli, savePubli } from '../../api/api';
+import { apiPubli } from '../../api/api';
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 

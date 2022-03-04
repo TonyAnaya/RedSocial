@@ -11,7 +11,6 @@ let descripcion = "Edita tu perfil para añadir una descripcion :)"
 
 function EditarPerfil() {
 
-    const [search,setSearch] = useState([])
     const navigate = useNavigate()
     const [loading,setLoading] = useState(false)
     const [error,setError] = useState({error:false,errorMessage:"Error"})
@@ -20,7 +19,7 @@ function EditarPerfil() {
     
     let data = JSON.parse(window.localStorage.USER)
     if(data.descri){
-        let descripcion = data.descri;
+        descripcion = data.descri;
     }
     let fondito = data.fondo
 
@@ -110,12 +109,13 @@ function EditarPerfil() {
                 email: data.email,
                 pass: event.target[9].value
             }
+            if(token && user){
+                saveToken({})
+                saveUser({})
+            }
             
-            saveToken({})
-            saveUser({})
             
             let loginResult = await apiLogin(newLogin)
-            //saveUser(newRegister)
             if (loginResult) {
                 setLoading(false)
                 if(loginResult.error){

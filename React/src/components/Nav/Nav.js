@@ -70,8 +70,10 @@ function Nav() {
           </ul>
           <ul className="navbar-nav" >
             <li className="nav-item" > <a  href="" onClick={()=> {
-            saveToken({})
-            saveUser({})
+              if(token && user){
+                saveToken({})
+                saveUser({})
+              }
             navigate("/login")
           }}> Log Out</a></li>
           </ul>

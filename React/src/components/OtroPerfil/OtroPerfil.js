@@ -8,11 +8,6 @@ import { useLocalStorage } from "../../hooks/useLocalStorage";
 function OtroPerfil() {
 
     let descripcion = "Edita tu perfil para añadir una descripcion :)"
-    const [search, setSearch] = useState([])
-    const [publi, ysetPubli] = useState([])
-    const [token, saveToken]= useLocalStorage("TOKEN",{})
-    const [user, saveUser]= useLocalStorage("USER",{})
-    const [friend, saveFriend]= useLocalStorage("FRIEND",{})
     
     let data = JSON.parse(window.localStorage.FRIEND)
     //window.location.pathname = window.location.pathname + "/" + data.name

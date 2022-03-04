@@ -1,7 +1,4 @@
 import './Perfil.css';
-import { useState  } from 'react';
-import { apiPubli, savePubli, searchUser } from '../../api/api';
-import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { NavLink } from "react-router-dom";
 
 
@@ -10,10 +7,6 @@ import { NavLink } from "react-router-dom";
 function Perfil() {
 
     let descripcion = "Edita tu perfil para añadir una descripcion :)"
-    const [search,setSearch] = useState([])
-    const [publi,setPubli] = useState([])
-    const [token, saveToken]= useLocalStorage("TOKEN",{})
-    const [user, saveUser]= useLocalStorage("USER",{})
     
     let data = JSON.parse(window.localStorage.USER)
     //window.location.pathname = window.location.pathname + "/" + data.name

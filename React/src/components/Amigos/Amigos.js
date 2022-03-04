@@ -1,24 +1,23 @@
 import './Amigos.css';
 import { useState ,useEffect } from 'react';
-import { apiPubli, savePubli, searchUser } from '../../api/api';
+import { searchUser } from '../../api/api';
 import { useLocalStorage } from "../../hooks/useLocalStorage";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 
 function Amigos() {
     
     const [search,setSearch] = useState([])
-    const [publi,setPubli] = useState([])
     const [token]= useLocalStorage("TOKEN",{})
     const [friend, saveFriend]= useLocalStorage("FRIEND",{})
+    const navigate = useNavigate()
     
 
     const asincrona = async () => {
         let resul = await searchUser("%%")
         let array = resul.result
         let newState =array
-        saveFriend({})
         setSearch(newState)
    }
 
@@ -29,17 +28,18 @@ function Amigos() {
 
     const onSubmit = async (event)=>{
         event.preventDefault()
-        if(!event.target[0].value){
-            event.target[0].value= "%%";
-        }
+        if(token.token){
+            if(!event.target[0].value){
+                event.target[0].value= "%%";
+            }
 
-        let resul = await searchUser(event.target[0].value)
-        let array = resul.result
-        let newState =array
-        
-        setSearch(newState)
-        event.target[0].value= "";
-        
+            let resul = await searchUser(event.target[0].value)
+            let array = resul.result
+            let newState =array
+            
+            setSearch(newState)
+            event.target[0].value= "";
+        }
     }
 
 
@@ -47,8 +47,10 @@ function Amigos() {
         let otromail = event.target.innerHTML
         let usuario = await searchUser(otromail)
         saveFriend(usuario.result[0])
+        if(friend){
+            navigate("/otro-perfil")
+        }
         setTimeout(() => {
-            window.location.reload(false);
         }, 100);
     }
 
@@ -75,9 +77,7 @@ function Amigos() {
                                 <h5 className="card-text ">{q.email}</h5>
                                 <br/>
                                 <button className="btn btn-primary botoncito" onClick={searchFriend}>
-                                    <NavLink className="btn btn-primary correito" to="/otro-perfil">
-                                        {q.email}
-                                    </NavLink>
+                                    {q.email}
                                 </button>
                             </div>
                         </div>
