@@ -42,50 +42,31 @@ function EditarPerfil() {
         let array = resul.result
 
         if(array[0]){
-            console.log("El usuario existe, eso es bueno porque estamos updateando")
-            if(!event.target[0].value){
-                console.log("El nombre se conservará")
-            }else {
+            if(event.target[0].value){
                 nam = event.target[0].value
             }
-            if(!event.target[1].value){
-                console.log("El apellido se conservará")
-            }else {
+            if(event.target[1].value){
                 last_nam = event.target[1].value
             }
-            if(!event.target[2].value){
-                console.log("La foto se conservará")
-            }else {
+            if(event.target[2].value){
                 img = event.target[2].value
             }
-            if(!event.target[3].value){
-                console.log("El fondo se conservará")
-            }else {
+            if(event.target[3].value){
                 fond = event.target[3].value
             }
-            if(!event.target[4].value){
-                console.log("El pais se conservará")
-            }else {
+            if(event.target[4].value){
                 pai = event.target[4].value
             }
-            if(!event.target[5].value){
-                console.log("La ciudad se conservará")
-            }else {
+            if(event.target[5].value){
                 ciuda = event.target[5].value
             }
-            if(!event.target[6].value){
-                console.log("El linkedin se conservará")
-            }else {
+            if(event.target[6].value){
                 lin = event.target[6].value
             }
-            if(!event.target[7].value){
-                console.log("El Github se conservará")
-            }else {
+            if(event.target[7].value){
                 gi = event.target[7].value
             }
-            if(!event.target[8].value){
-                console.log("La descripcion se conservará")
-            }else {
+            if(event.target[8].value){
                 descr = event.target[8].value
             }
 
