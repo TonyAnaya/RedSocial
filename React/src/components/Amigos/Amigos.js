@@ -68,7 +68,7 @@ function Amigos() {
             
             {
                 search.slice(0).reverse().map(q =>(
-                    <div key={q.id} className="col-lg-3">
+                    <div key={q.email} className="col-lg-3">
                         <div className="card card_user">
                             <img className="card-img-top img-fluid fot" src={q.foto}></img>
                             <div className="card-body">
