@@ -21,20 +21,19 @@ function Publi() {
 
     const onSubmit = async  (event) => {
         event.preventDefault()
-        console.log(JSON.parse(window.localStorage.USER))
-        let newState = {
-            name: JSON.parse(window.localStorage.USER).name,
-            publi: event.target[0].value,
-            imag: JSON.parse(window.localStorage.USER).foto
-       }
-       
-        console.log(await savePubli(JSON.parse(window.localStorage.USER).name,  event.target[0].value, JSON.parse(window.localStorage.USER).foto))
-        setLoading(true)
-        setTimeout(() => {
-            setPubli([...publi, newState])
-            event.target.reset()
-            setLoading(false)
-        }, 2000);
+        if(JSON.parse(window.localStorage.TOKEN).token){
+            let newState = {
+                name: JSON.parse(window.localStorage.USER).name,
+                publi: event.target[0].value,
+                imag: JSON.parse(window.localStorage.USER).foto
+            }
+            setLoading(true)
+            setTimeout(() => {
+                setPubli([...publi, newState])
+                event.target.reset()
+                setLoading(false)
+            }, 2000);
+        }
     }
   return (
     <div className="container-fluid row col-lg-12">
