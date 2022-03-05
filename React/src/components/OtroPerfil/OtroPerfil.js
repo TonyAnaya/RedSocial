@@ -18,10 +18,8 @@ function OtroPerfil() {
     let linkedin = data.link
     let github = data.git
     let cont = 0
-    console.log(cont)
     if (cont=0){
         setTimeout(() => {
-            console.log("holi")
             window.location.reload(false);
         }, 1000);
         cont = cont +1

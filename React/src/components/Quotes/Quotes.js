@@ -10,7 +10,6 @@ const [loading,setLoading] = useState(false)
 
 const onSubmit = (event) => {
     event.preventDefault()
-    console.log(event)
     let newQuote ={
         id: quotes.length + 1,
         author:event.target[0].value,
